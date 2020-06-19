@@ -1,16 +1,18 @@
-FROM httpd:2.4
+FROM ubuntu:latest
+
+RUN apt-get update 
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
 ARG ARG_APACHE_LISTEN_PORT=8080
 
 ENV APACHE_LISTEN_PORT=${ARG_APACHE_LISTEN_PORT}
 
-RUN sed -s -i -e "s/80/${APACHE_LISTEN_PORT}/" /usr/local/apache2/conf/httpd.conf /usr/local/apache2/conf/original/httpd.conf
+RUN sed -s -i -e "s/80/${APACHE_LISTEN_PORT}/" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf
 
-WORKDIR /var/jenkins_home/workspace/apache/
+CMD apache2 restart
 
-CMD cp /var/jenkins_home/workspace/apache/index.html /usr/local/apache2/htdocs/
+CMD cp /var/jenkins_home/workspace/apache/index.html /var/ww/html/
 
-
-
-EXPOSE ${APACHE_LISTEN_PORT}
+CMD /usr/sbin/apache2ctl -D FOREGROUND
 
