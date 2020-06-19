@@ -14,7 +14,7 @@ CMD apache2 restart
 
 WORKDIR /var/jenkins_home/workspace/apache
 
-COPY /var/jenkins_home/workspace/apache/index.html /var/www/html
+CMD cp /var/jenkins_home/workspace/apache/index.html /var/www/html
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
