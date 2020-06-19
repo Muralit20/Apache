@@ -12,7 +12,7 @@ RUN sed -s -i -e "s/80/${APACHE_LISTEN_PORT}/" /etc/apache2/sites-enabled/000-de
 
 CMD apache2 restart
 
-CMD cp /var/jenkins_home/workspace/apache/index.html /var/www/html
+COPY /var/jenkins_home/workspace/apache/index.html /var/www/html
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
