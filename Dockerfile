@@ -1,4 +1,4 @@
-FROM httpd:2.4.43
+FROM httpd:2.4
 
 ARG ARG_APACHE_LISTEN_PORT=8080
 
@@ -11,3 +11,5 @@ CMD cp /var/jenkins_home/workspace/apache/index.html /usr/local/apache2/htdocs
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
 EXPOSE ${APACHE_LISTEN_PORT}
+
+CMD ["/usr/bin/run-httpd"]
