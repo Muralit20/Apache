@@ -8,9 +8,9 @@ RUN sed -s -i -e "s/80/${APACHE_LISTEN_PORT}/" /usr/local/apache2/conf/httpd.con
 
 WORKDIR /var/jenkins_home/workspace/apache/
 
-CMD cp /var/jenkins_home/workspace/apache/index.html /usr/local/apache2/htdocs
+CMD cp /var/jenkins_home/workspace/apache/index.html /usr/local/apache2/htdocs/
 
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+
 
 EXPOSE ${APACHE_LISTEN_PORT}
 
